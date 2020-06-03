@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".intro">
+
+    <TextView
+        android:text="어플 이름"
+        android:gravity="center"
+        android:textSize="24dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="137dp"
+        android:paddingRight="136dp"
+        android:textColor="@android:color/black"
+        android:fontFamily="@font/nanumsquareb"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </LinearLayout>
+    <LinearLayout
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:text="내 주변 확진자 이용 매장"
+                android:fontFamily="@font/nanumsquaredb"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+            <TextView
+                android:text="더보기"
+                android:fontFamily="@font/nanumsquaredb"
+                android:textSize="16dp"
+                android:textColor="#04D9D9"
+                android:gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+</LinearLayout>
