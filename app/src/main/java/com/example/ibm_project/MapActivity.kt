@@ -1,41 +1,27 @@
 package com.example.ibm_project
 
-import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.gms.maps.model.PolygonOptions
-import kotlinx.android.synthetic.main.activity_map_searched.*
 
-class MapForSearchedActivity : AppCompatActivity() {
-    var fusedLocationClient: FusedLocationProviderClient?= null
-    var locationCallback: LocationCallback?=null
-    var locationRequest: LocationRequest?=null
+// 추천매장 넘어올때, 확진자 이용매장 넘어올때
+class MapActivity : AppCompatActivity() {
     lateinit var googleMap: GoogleMap
-    var loc:LatLng? = null
-    val arrLoc = ArrayList<LatLng>()
-
+    var loc: LatLng? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_map_searched)
+        setContentView(R.layout.activity_map)
         init()
         initmap()
     }
 
     private fun init() {
-        button_recommend.setOnClickListener {
-            val i = Intent(this, RecomendedStoreListActivity::class.java)
 
-        }
     }
 
     private fun initmap() {
@@ -61,5 +47,7 @@ class MapForSearchedActivity : AppCompatActivity() {
 
     private fun initMapListener() {
 
+
     }
+
 }
