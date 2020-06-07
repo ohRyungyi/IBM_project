@@ -42,14 +42,15 @@
                 android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"/>
+
             <TextView
-                android:text="더보기"
-                android:fontFamily="@font/nanumsquaredb"
-                android:textSize="16dp"
-                android:textColor="#04D9D9"
-                android:gravity="right"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:fontFamily="@font/nanumsquaredb"
+                android:gravity="right"
+                android:text="지도"
+                android:textColor="#04D9D9"
+                android:textSize="16dp" />
         </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
