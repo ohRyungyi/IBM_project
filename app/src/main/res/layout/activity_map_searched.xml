@@ -9,79 +9,164 @@
     tools:context=".MapForSearchedActivity">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textView_searched_title"
+            android:id="@+id/textView3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="50"
+            android:layout_height="match_parent"
+            android:layout_weight="30"
+            android:fontFamily="@font/nanumsquaredb"
             android:gravity="center"
-            android:text="검색한 장소명" />
+            android:text="검색한매장명"
+            android:textColor="#000000"
+            android:textSize="24dp" />
 
-        <Button
-            android:id="@+id/button_list"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="리스트" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="46dp"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/listbtn" />
     </LinearLayout>
+
 
     <fragment
         android:id="@+id/mapSearched"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="570dp" />
+        android:layout_height="517dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="277dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/button_recommend"
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
+            <ImageView
+                android:id="@+id/storeimage"
+                android:layout_width="381dp"
+                android:layout_height="match_parent"
+                android:layout_weight="15"
+                android:scaleType="fitXY" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="1"
-                android:text="추천매장보기"
-                android:textSize="12sp" />
+                android:layout_weight="15"
+                android:foregroundGravity="center_vertical"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/storename"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TextView" />
+                <TextView
+                    android:id="@+id/storename"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/nanumsquaredb"
+                    android:padding="3dp"
+                    android:text="TextView"
+                    android:textColor="#000000"
+                    android:textSize="16dp" />
 
-            <TextView
-                android:id="@+id/detaillocation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TextView" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="5dp">
 
-            <TextView
-                android:id="@+id/tel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TextView" />
+                    <TextView
+                        android:id="@+id/location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/nanumsquareb"
+                        android:text="서울 광진구 00로"
+                        android:textColor="#828282"
+                        android:textSize="13dp" />
+
+                    <TextView
+                        android:id="@+id/tel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/nanumsquareb"
+                        android:text="02-1234-5678"
+                        android:textColor="#828282"
+                        android:textSize="13dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/distance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#F2F2F2"
+                        android:backgroundTint="#F2F2F2"
+                        android:fontFamily="@font/nanumsquaredb"
+                        android:paddingLeft="3dp"
+                        android:paddingRight="10dp"
+                        android:text="TextView"
+                        android:textColor="#828282" />
+
+                    <TextView
+                        android:id="@+id/state"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#F2F2F2"
+                        android:fontFamily="@font/nanumsquaredb"
+                        android:text="TextView"
+                        android:textColor="#828282" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="355dp"
+                android:layout_height="match_parent"
+                android:layout_weight="15"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/congestionImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    app:srcCompat="@drawable/round" />
+
+                <TextView
+                    android:id="@+id/congestionrate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#F2F2F2"
+                    android:fontFamily="@font/nanumsquaredb"
+                    android:gravity="center"
+                    android:text="TextView"
+                    android:textColor="#828282" />
+            </LinearLayout>
+
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/congestionimage"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/round" />
-
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:backgroundTint="#0077FF"
+            android:fontFamily="@font/nanumsquareb"
+            android:text="추천매장보기"
+            android:textColor="#FFFFFF"
+            android:textSize="14dp" />
     </LinearLayout>
 
 </LinearLayout>

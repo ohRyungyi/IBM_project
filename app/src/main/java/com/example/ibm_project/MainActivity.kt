@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     fun load_intro(){
         addtextView.setOnClickListener {
-            val intro_intent = Intent(applicationContext, intro::class.java)
+            val intro_intent = Intent(applicationContext, MapActivity::class.java)
             startActivity(intro_intent)
         }
     }
