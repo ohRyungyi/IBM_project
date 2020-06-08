@@ -14,9 +14,9 @@ class RecomendedStoreListActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        button2.setOnClickListener {
+        /*button2.setOnClickListener {
             val i = Intent(this,MapActivity::class.java)
             // i.putExtra로 추천매장 위도경도, 매장명, 상세주소, 전화번호, 혼잡도 담기
-        }
+        }*/
     }
 }

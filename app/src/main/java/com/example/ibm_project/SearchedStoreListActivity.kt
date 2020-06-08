@@ -14,9 +14,9 @@ class SearchedStoreListActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        button_map.setOnClickListener {
+        /*button_map.setOnClickListener {
             val i = Intent(this,MapForSearchedActivity::class.java)
             //인텐트에 검색매장의 위도경도 매장명 상세주소 전화번호 혼잡도 담기
-        }
+        }*/
     }
 }

@@ -32,10 +32,10 @@ class MapForSearchedActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        button_recommend.setOnClickListener {
+        /*button_recommend.setOnClickListener {
             val i = Intent(this, RecomendedStoreListActivity::class.java)
 
-        }
+        }*/
     }
 
     private fun initmap() {

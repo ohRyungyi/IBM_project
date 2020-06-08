@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="#DF828282"
+    android:gravity="center"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="14dp"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:id="@+id/inputAddress"
+                android:hint="지역 이름(동,읍,면)으로 검색"
+                android:background="@drawable/editstyle"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            <Button
+                android:layout_marginLeft="10dp"
+                android:id="@+id/find"
+                android:text="찾기"
+                android:textSize="15dp"
+                android:textColor="#ffffff"
+                android:fontFamily="@font/nanumsquaredb"
+                android:paddingLeft="17dp"
+                android:paddingRight="17dp"
+                android:paddingTop="7dp"
+                android:paddingBottom="7dp"
+                android:background="@drawable/findbtnstyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/addressList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
