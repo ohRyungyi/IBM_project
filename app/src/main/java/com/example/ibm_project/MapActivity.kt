@@ -27,7 +27,7 @@ class MapActivity : AppCompatActivity() {
     }
 
     private fun initmap() {
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.mapSearched) as SupportMapFragment
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.mapVisited) as SupportMapFragment
         mapFragment.getMapAsync{
             googleMap = it
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc,16.0f))

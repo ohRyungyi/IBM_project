@@ -23,7 +23,7 @@ class MapForSearchedActivity : AppCompatActivity() {
     var locationCallback: LocationCallback?=null
     var locationRequest: LocationRequest?=null
     lateinit var googleMap: GoogleMap
-    var loc:LatLng? = null
+    var loc:LatLng= LatLng(37.554752,126.970631)
     val arrLoc = ArrayList<LatLng>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,13 +48,13 @@ class MapForSearchedActivity : AppCompatActivity() {
             googleMap.setMinZoomPreference(10.0f)
             googleMap.setMaxZoomPreference(18.0f)
             val options = MarkerOptions()
-            //options.position(loc)
+            options.position(loc)
             options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
-            //options.title("역")
-            //options.title("서울역")
+            options.title("역")
+            options.title("서울역")
 
             val mk1 = googleMap.addMarker(options)
-            //mk1.showInfoWindow() //실행했을 때 보임
+            mk1.showInfoWindow() //실행했을 때 보임
 
             initMapListener()
         }

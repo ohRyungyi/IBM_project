@@ -35,7 +35,7 @@
         android:id="@+id/mapVisited"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="549dp" />
+        android:layout_height="474dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -135,8 +135,8 @@
 
             <TextView
                 android:id="@+id/day"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="89dp"
+                android:layout_height="28dp"
                 android:fontFamily="@font/nanumsquaredb"
                 android:gravity="center"
                 android:text="TextView"

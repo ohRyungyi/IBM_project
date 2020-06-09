@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
     fun load_intro(){
         addtextView.setOnClickListener {
-            val intro_intent = Intent(applicationContext, MapActivity::class.java)
+            val intro_intent = Intent(applicationContext, MapForSearchedActivity::class.java) //지도 넘어가는 지 확인
             startActivity(intro_intent)
         }
     }
