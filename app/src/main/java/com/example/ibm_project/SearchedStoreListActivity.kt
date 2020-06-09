@@ -5,7 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_search_store_list.*
 
-//사용자가 검색한 매장리스트 액티비티
+//사용자가 검색한 매장리스트 화면
+
 class SearchedStoreListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

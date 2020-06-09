@@ -16,6 +16,8 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.PolygonOptions
 import kotlinx.android.synthetic.main.activity_map_searched.*
 
+//검색한 매장 지도 화면
+
 class MapForSearchedActivity : AppCompatActivity() {
     var fusedLocationClient: FusedLocationProviderClient?= null
     var locationCallback: LocationCallback?=null
