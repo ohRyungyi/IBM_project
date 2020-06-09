@@ -9,6 +9,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_search_store.*
 import kotlinx.android.synthetic.main.recent_term.*
+//검색화면
+// 검색한 텍스트로 api에서 (매장명 + 위도경도 + 혼잡도) 받아서 SearchedStoreListActivity로 전달
 
 class SearchStore : AppCompatActivity() {
     lateinit var temrs:ArrayList<researchTerms>

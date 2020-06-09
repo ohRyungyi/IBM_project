@@ -17,6 +17,8 @@ import com.google.android.gms.maps.model.PolygonOptions
 import kotlinx.android.synthetic.main.activity_map_searched.*
 
 //검색한 매장 지도 화면
+//인텐트로 (매장명 + 위도경도 + 혼잡도) 이거 받아서 지도에 띄우기
+//추천매장보기 버튼 누르면 ???? api에서 정보 받고 , RecommendedStoreListActivity 로 넘기기
 
 class MapForSearchedActivity : AppCompatActivity() {
     var fusedLocationClient: FusedLocationProviderClient?= null
