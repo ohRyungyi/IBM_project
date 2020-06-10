@@ -7,9 +7,7 @@ import android.widget.AdapterView
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.ibm_project.search
 import kotlinx.android.synthetic.main.activity_search.*
-import kotlinx.android.synthetic.main.activity_search_store.*
 import kotlinx.android.synthetic.main.recent_term.*
 //검색화면
 // 검색한 텍스트로 api에서 (매장명 + 위도경도 + 혼잡도) 받아서 SearchedStoreListActivity로 전달
@@ -19,7 +17,7 @@ class SearchStore : AppCompatActivity() {
     lateinit var termAdapter:recentTermAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_search_store)
+        setContentView(R.layout.activity_search)
         init()
         back.setOnClickListener {
             Toast.makeText(applicationContext,"뒤로 가기",Toast.LENGTH_SHORT).show()

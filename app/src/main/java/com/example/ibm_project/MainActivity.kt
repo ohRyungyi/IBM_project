@@ -45,13 +45,13 @@ class MainActivity : AppCompatActivity() {
         var loc:TextView=findViewById(R.id.locate)
         nowLocation=findViewById<TextView>(R.id.locate)
         nowlocate=nowLocation.text.toString()
-        init()
+        formatRecycler()
         loc.setOnClickListener {
             searchPart.visibility=View.VISIBLE
             var addressList=findViewById<RecyclerView>(R.id.addressList)
             var search=findViewById<TextView>(R.id.inputAddress)
             search.setText("")
-            init()
+            formatRecycler()
             /*var btn=findViewById<Button>(R.id.find)
             btn.setOnClickListener {
                 var location=findViewById<TextView>(R.id.inputAddress)
@@ -173,7 +173,7 @@ class MainActivity : AppCompatActivity() {
         // 주소 변경 => 확진자 방문 매장 리스트 재설정
     }
 
-    fun init(){
+    fun formatRecycler(){
         var data=setData("")
         adapter=locationAdapter(data)
         var list=findViewById<RecyclerView>(R.id.addressList)
