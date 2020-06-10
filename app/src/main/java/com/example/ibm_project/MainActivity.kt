@@ -1,6 +1,10 @@
 package com.example.ibm_project
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Address
+import android.location.Geocoder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -22,15 +26,16 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_set_location.*
 
 class MainActivity : AppCompatActivity() {
 
-    var mResultLocation = listOf<Address>()
+    /*var mResultLocation = listOf<Address>()
     var fusedLocationClient: FusedLocationProviderClient?= null
     var locationCallback:LocationCallback?=null
     var locationRequest:LocationRequest?=null
 
-   var currentLoc=LatLng(0.0,0.0)
+   var currentLoc=LatLng(0.0,0.0)*/
 
 
     lateinit var nowlocate:String
@@ -40,8 +45,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        init()
-        //load_intro()
+        load_intro()
         var loc:TextView=findViewById(R.id.locate)
         nowLocation=findViewById<TextView>(R.id.locate)
         nowlocate=nowLocation.text.toString()
@@ -52,28 +56,7 @@ class MainActivity : AppCompatActivity() {
             var search=findViewById<TextView>(R.id.inputAddress)
             search.setText("")
             formatRecycler()
-            /*var btn=findViewById<Button>(R.id.find)
-            btn.setOnClickListener {
-                var location=findViewById<TextView>(R.id.inputAddress)
-                var txt=location.text.toString()
-                var data=setData(txt)
-                var adapter=locationAdapter(data)
-                var list=findViewById<RecyclerView>(R.id.addressList)
-                adapter.itemclicklistener=object:locationAdapter.OnItemClickListener{
-                    override fun itemClick(
-                        hoder: locationAdapter.MyViewHolder,
-                        view: View,
-                        data: String,
-                        position: Int
-                    ) {
-                        Toast.makeText(applicationContext,data.toString()+" 위치 설정",Toast.LENGTH_SHORT).show()
-                        nowlocate=data
-                    }
 
-                }
-            }
-            searchPart.visibility=View.INVISIBLE
-            nowLocation.setText("위치 > "+nowlocate)*/
         }
         var btn=findViewById<Button>(R.id.find)
         btn.setOnClickListener {
@@ -102,7 +85,7 @@ class MainActivity : AppCompatActivity() {
         }
         var searchStore=findViewById<TextView>(R.id.searchStore)
         searchStore.setOnClickListener {
-            val searchStoreIntent=Intent(applicationContext,search::class.java)
+            val searchStoreIntent=Intent(applicationContext,SearchStore::class.java)
             startActivity(searchStoreIntent)
         }
         var more=findViewById<TextView>(R.id.more)
@@ -113,6 +96,12 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+    }
+    fun load_intro(){
+        val intro_intent = Intent(applicationContext, intro::class.java)
+        startActivity(intro_intent)
+        var data:LatLng=intro_intent.extras?.get("nowlocation")  as LatLng
+        Toast.makeText(applicationContext,data.toString(),Toast.LENGTH_SHORT).show()
     }
     fun initData():ArrayList<StoreData>{
         //어댑터에 넘겨줄 데이터 생성
@@ -125,7 +114,8 @@ class MainActivity : AppCompatActivity() {
             500.0f,
             -1,
             2,
-            ""
+            "",
+        1.23
         ))
         data.add(StoreData(
             "담백한 고기집",
@@ -135,7 +125,8 @@ class MainActivity : AppCompatActivity() {
             500.0f,
             -1,
             2,
-            ""
+            "",
+            1.45
         ))
         data.add(StoreData(
             "분위기 카페",
@@ -145,7 +136,8 @@ class MainActivity : AppCompatActivity() {
             900.0f,
             -1,
             5,
-            ""
+            "",
+            0.98
         ))
         data.add(StoreData(
             "유명한 의류매장",
@@ -155,7 +147,8 @@ class MainActivity : AppCompatActivity() {
             1000.0f,
             1,
             7,
-            ""
+            "",
+            0.2
         ))
         data.add(StoreData(
             "고급진 카페",
@@ -165,7 +158,8 @@ class MainActivity : AppCompatActivity() {
             1300.0f,
             1,
             9,
-            ""
+            "",
+            3.5
         ))
         return data
     }
@@ -229,14 +223,14 @@ class MainActivity : AppCompatActivity() {
     private fun init() {
 
         // 지정한 위치 위도 경도 받아오기
-        val mgeocorder:Geocoder = Geocoder(this)
+        val mgeocorder: Geocoder = Geocoder(this)
         mResultLocation= mgeocorder.getFromLocationName("서울 광진구 능동로",1)
         val mLat = mResultLocation.get(0).latitude
         val mLng =  mResultLocation.get(0).longitude
         Log.i("geocoding",mLat.toString()+mLng.toString())
 
         // 더보기 버튼누르면 액티비티 전환 (확진자 이용매장이름+ 주소 + 위도경도 + 확진자방문일자 + 거리+ 혼잡도) 인텐트에 담아서 전달하기
-        addtextView.setOnClickListener {
+        locate.setOnClickListener {
             val intro_intent = Intent(applicationContext, VisitedStoreListActivity::class.java)
             startActivity(intro_intent)
         }

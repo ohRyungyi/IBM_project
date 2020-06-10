@@ -98,7 +98,6 @@ class VisitedStoreListActivity : AppCompatActivity() {
             9,
             ""
         ))*/
-        Log.i("input size : ",input?.)
         return data
     }
 
