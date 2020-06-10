@@ -28,6 +28,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_set_location.*
+import kotlinx.android.synthetic.main.activity_visited_store_list.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -97,6 +98,7 @@ class MainActivity : AppCompatActivity() {
         more.setOnClickListener {
             val visitedIntent=Intent(applicationContext,VisitedStoreListActivity::class.java)
             visitedIntent.putExtra("dataOfStore",store)
+            visitedIntent.putExtra("type",1)
             startActivity(visitedIntent)
 
         }
@@ -106,7 +108,11 @@ class MainActivity : AppCompatActivity() {
         var data=initData()
         var recyclerView=findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager=LinearLayoutManager(applicationContext,LinearLayoutManager.VERTICAL,false)
-        var adapter=VisitiedStoreAdapter(data)
+        var d=ArrayList<StoreData>()
+        for(i in 0 ..3){
+            d.add(data[i])
+        }
+        var adapter=VisitiedStoreAdapter(d)
         adapter.onitemclick=object:VisitiedStoreAdapter.OnItemClickListener{
             override fun itemclick(
                 viewHolder: VisitiedStoreAdapter.MyViewHolder,
@@ -136,7 +142,8 @@ class MainActivity : AppCompatActivity() {
             -1,
             2,
             "",
-        1.23
+        1.23,
+            "02-1234-5678"
         ))
         data.add(StoreData(
             "담백한 고기집",
@@ -147,7 +154,8 @@ class MainActivity : AppCompatActivity() {
             -1,
             2,
             "",
-            1.45
+            1.45,
+            "02-1234-5678"
         ))
         data.add(StoreData(
             "분위기 카페",
@@ -158,7 +166,8 @@ class MainActivity : AppCompatActivity() {
             -1,
             5,
             "",
-            0.98
+            0.98,
+            "02-1234-5678"
         ))
         data.add(StoreData(
             "유명한 의류매장",
@@ -169,7 +178,8 @@ class MainActivity : AppCompatActivity() {
             1,
             7,
             "",
-            0.2
+            0.2,
+            "02-1234-5678"
         ))
         data.add(StoreData(
             "고급진 카페",
@@ -180,7 +190,8 @@ class MainActivity : AppCompatActivity() {
             1,
             9,
             "",
-            3.5
+            3.5,
+            "02-1234-5678"
         ))
         return data
     }
