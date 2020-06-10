@@ -46,7 +46,7 @@ class VisitiedStoreAdapter(var items:ArrayList<StoreData>):RecyclerView.Adapter<
         }
         holder.nameView.text=items[position].name
         holder.addressView.text=items[position].address
-        holder.distanceView.text=items[position].distance.toInt().toString()
+        holder.distanceView.text=items[position].distance.toInt().toString()+"m"
         when(items[position].state){
             -1->{
                 holder.stateView.text="휴업"
