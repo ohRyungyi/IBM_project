@@ -16,12 +16,16 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.PolygonOptions
 import kotlinx.android.synthetic.main.activity_map_searched.*
 
+//검색한 매장 지도 화면
+//인텐트로 (매장명 + 위도경도 + 혼잡도) 이거 받아서 지도에 띄우기
+//추천매장보기 버튼 누르면 ???? api에서 정보 받고 , RecommendedStoreListActivity 로 넘기기
+
 class MapForSearchedActivity : AppCompatActivity() {
     var fusedLocationClient: FusedLocationProviderClient?= null
     var locationCallback: LocationCallback?=null
     var locationRequest: LocationRequest?=null
     lateinit var googleMap: GoogleMap
-    var loc:LatLng? = null
+    var loc:LatLng= LatLng(37.554752,126.970631)
     val arrLoc = ArrayList<LatLng>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,13 +50,13 @@ class MapForSearchedActivity : AppCompatActivity() {
             googleMap.setMinZoomPreference(10.0f)
             googleMap.setMaxZoomPreference(18.0f)
             val options = MarkerOptions()
-            //options.position(loc)
+            options.position(loc)
             options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
-            //options.title("역")
-            //options.title("서울역")
+            options.title("역")
+            options.title("서울역")
 
             val mk1 = googleMap.addMarker(options)
-            //mk1.showInfoWindow() //실행했을 때 보임
+            mk1.showInfoWindow() //실행했을 때 보임
 
             initMapListener()
         }
