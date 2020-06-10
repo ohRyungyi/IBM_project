@@ -3,7 +3,8 @@
     android:orientation="horizontal" 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/round5">
+    android:background="@drawable/round5"
+    android:id="@+id/totalView">
     <ImageView
         android:id="@+id/storeimage"
         android:layout_weight="15"

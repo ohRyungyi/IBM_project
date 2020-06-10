@@ -1,24 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <LinearLayout
-        android:id="@+id/test"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <View
-            android:visibility="gone"
-            android:background="#000000"
-            android:id="@+id/setLocation"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/main"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -48,17 +33,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <androidx.viewpager2.widget.ViewPager2
+                        android:layout_marginBottom="20dp"
+                        android:id="@+id/advertize"
+                        android:background="#00ffff"
+                        android:layout_above="@+id/locate"
                         android:layout_width="match_parent"
-                        android:layout_height="140dp"/>
+                        android:layout_height="match_parent"/>
                     <LinearLayout
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
                         android:background="@drawable/round"
-                        android:layout_above="@+id/location"
+                        android:layout_above="@+id/locate"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:orientation="horizontal">
-                        <EditText
+                        <TextView
+                            android:id="@+id/searchStore"
                             android:gravity="center_vertical"
                             android:fontFamily="@font/nanumsquareb"
                             android:textSize="16dp"
@@ -72,11 +62,6 @@
                             android:src="@drawable/lookbig"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
                     </LinearLayout>
                     <TextView
                         android:id="@+id/locate"
@@ -121,7 +106,7 @@
                     android:layout_height="match_parent"/>
 
                 <TextView
-                    android:id="@+id/addtextView"
+                    android:id="@+id/more"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/nanumsquaredb"
@@ -140,10 +125,69 @@
             </LinearLayout>
 
         </LinearLayout>
+
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/searchPart"
+        android:visibility="invisible"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:background="#DF828282"
+        android:gravity="center"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:paddingLeft="32dp"
+            android:paddingRight="32dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="14dp"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_marginBottom="15dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:id="@+id/inputAddress"
+                    android:hint="지역 이름(동,읍,면)으로 검색"
+                    android:background="@drawable/editstyle"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+                <Button
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/find"
+                    android:text="찾기"
+                    android:textSize="15dp"
+                    android:textColor="#ffffff"
+                    android:fontFamily="@font/nanumsquaredb"
+                    android:paddingLeft="17dp"
+                    android:paddingRight="17dp"
+                    android:paddingTop="7dp"
+                    android:paddingBottom="7dp"
+                    android:background="@drawable/findbtnstyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/addressList"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"/>
 
+            </LinearLayout>
 
+        </LinearLayout>
+
+    </LinearLayout>
 
 </FrameLayout>

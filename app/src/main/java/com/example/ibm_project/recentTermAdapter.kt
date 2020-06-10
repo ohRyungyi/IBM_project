@@ -28,18 +28,18 @@ class recentTermAdapter(var items:ArrayList<researchTerms>):RecyclerView.Adapter
         }
     }
 
-    fun dataCheck(terms:String):Boolean{
+    fun dataCheck(terms:String):Int{
         for(i in 0 until items.size){
             if(items[i].term==terms){
-                return true
+                return i
             }
         }
-        return false
+        return -1
     }
 
     fun addData(terms:String){
-        if(dataCheck(terms)){
-            return
+        if(dataCheck(terms)>=0){
+            return ;
         }
         else{
             items.add(researchTerms(terms))
