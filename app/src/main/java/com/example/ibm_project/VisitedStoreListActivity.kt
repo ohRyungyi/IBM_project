@@ -26,7 +26,12 @@ class VisitedStoreListActivity : AppCompatActivity() {
 
     fun init() {
         var intent=intent
-        var data=initData(intent.extras)
+        Log.i("size : ",intent.extras.toString())
+        var data=intent.extras?.getSerializable("dataOfStore") as ArrayList<StoreData>
+        for(d in data){
+            Log.i("data : ",d.name)
+        }
+
 
         visitedAdapter=VisitiedStoreAdapter(data)
         var storelist=findViewById<RecyclerView>(R.id.visitedStoreRecycler)

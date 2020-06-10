@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.os.Looper
 import androidx.core.app.ActivityCompat
+import com.google.android.gms.common.internal.Objects
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.SupportMapFragment
@@ -30,12 +31,12 @@ import kotlinx.android.synthetic.main.activity_set_location.*
 
 class MainActivity : AppCompatActivity() {
 
-    /*var mResultLocation = listOf<Address>()
+    var mResultLocation = listOf<Address>()
     var fusedLocationClient: FusedLocationProviderClient?= null
     var locationCallback:LocationCallback?=null
     var locationRequest:LocationRequest?=null
 
-   var currentLoc=LatLng(0.0,0.0)*/
+   var currentLoc=LatLng(0.0,0.0)
 
 
     lateinit var nowlocate:String
@@ -46,17 +47,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         load_intro()
+        //현재 위치 설정하는 함수가 필요
         var loc:TextView=findViewById(R.id.locate)
         nowLocation=findViewById<TextView>(R.id.locate)
         nowlocate=nowLocation.text.toString()
         formatRecycler()
+
+        //확진자 방문 매장 리스트에 어댑터 달성
+        makeList()
+
         loc.setOnClickListener {
             searchPart.visibility=View.VISIBLE
             var addressList=findViewById<RecyclerView>(R.id.addressList)
             var search=findViewById<TextView>(R.id.inputAddress)
             search.setText("")
             formatRecycler()
-
         }
         var btn=findViewById<Button>(R.id.find)
         btn.setOnClickListener {
@@ -97,11 +102,27 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+    fun makeList(){
+        var data=initData()
+        var recyclerView=findViewById<RecyclerView>(R.id.recyclerView)
+        recyclerView.layoutManager=LinearLayoutManager(applicationContext,LinearLayoutManager.VERTICAL,false)
+        var adapter=VisitiedStoreAdapter(data)
+        adapter.onitemclick=object:VisitiedStoreAdapter.OnItemClickListener{
+            override fun itemclick(
+                viewHolder: VisitiedStoreAdapter.MyViewHolder,
+                view: View,
+                data: StoreData,
+                position: Int
+            ) {
+                Toast.makeText(applicationContext,data.name+" 가게 클릭",Toast.LENGTH_SHORT).show()
+            }
+
+        }
+        recyclerView.adapter=adapter
+    }
     fun load_intro(){
         val intro_intent = Intent(applicationContext, intro::class.java)
         startActivity(intro_intent)
-        var data:LatLng=intro_intent.extras?.get("nowlocation")  as LatLng
-        Toast.makeText(applicationContext,data.toString(),Toast.LENGTH_SHORT).show()
     }
     fun initData():ArrayList<StoreData>{
         //어댑터에 넘겨줄 데이터 생성
@@ -230,14 +251,10 @@ class MainActivity : AppCompatActivity() {
         Log.i("geocoding",mLat.toString()+mLng.toString())
 
         // 더보기 버튼누르면 액티비티 전환 (확진자 이용매장이름+ 주소 + 위도경도 + 확진자방문일자 + 거리+ 혼잡도) 인텐트에 담아서 전달하기
-        locate.setOnClickListener {
+        /*locate.setOnClickListener {
             val intro_intent = Intent(applicationContext, VisitedStoreListActivity::class.java)
             startActivity(intro_intent)
-        }
-    fun load_intro(){
-        val intro_intent = Intent(applicationContext, intro::class.java)
-        startActivity(intro_intent)
-    }
+        }*/
 
         //권한체크하고 현재 위치정보 가져오기
         getCurrentLoc()

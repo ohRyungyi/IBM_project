@@ -32,7 +32,6 @@ class intro : AppCompatActivity() {
 
         //init()
         Handler().postDelayed({
-            //loading
             finish()
         },2000)
     }

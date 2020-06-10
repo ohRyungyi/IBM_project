@@ -21,6 +21,7 @@ class SearchStore : AppCompatActivity() {
         init()
         back.setOnClickListener {
             Toast.makeText(applicationContext,"뒤로 가기",Toast.LENGTH_SHORT).show()
+            finish()
         }
         search.setOnClickListener {
             addData(searchTerms.text.toString())
@@ -35,6 +36,9 @@ class SearchStore : AppCompatActivity() {
         termAdapter.deleteData(pos)
     }
     fun addData(terms:String){
+        if(terms==""){
+            return;
+        }
         if(termAdapter.items.contains(researchTerms(terms))){
             termAdapter.items.remove(researchTerms(terms))
             termAdapter.items.add(0,researchTerms(terms))

@@ -46,7 +46,7 @@ class VisitiedStoreAdapter(var items:ArrayList<StoreData>):RecyclerView.Adapter<
         }
         holder.nameView.text=items[position].name
         holder.addressView.text=items[position].address
-        holder.distanceView.text=items[position].distance.toString()
+        holder.distanceView.text=items[position].distance.toInt().toString()
         when(items[position].state){
             -1->{
                 holder.stateView.text="휴업"
@@ -58,7 +58,7 @@ class VisitiedStoreAdapter(var items:ArrayList<StoreData>):RecyclerView.Adapter<
                 holder.stateView.text="운영 중"
             }
         }
-        holder.dayView.text=items[position].daysago.toString()
+        holder.dayView.text=items[position].daysago.toString()+"일 전 "
     }
 
 }
