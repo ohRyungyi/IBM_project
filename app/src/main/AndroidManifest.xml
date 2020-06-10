@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -15,8 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".VisitedStoreListActivity"></activity>
-        <activity android:name=".search"></activity>
+        <activity android:name=".VisitedStoreListActivity" />
+        <activity android:name=".SearchStore" />
         <activity android:name=".setLocation" />
         <activity android:name=".RecomendedStoreListActivity" />
         <activity android:name=".MapForSearchedActivity" />
@@ -33,10 +33,14 @@
 
         <meta-data
             android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version"/>
+            android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDzjNvtA1CBoz7QQTbQ5p5vYG9HwcgImH8"/>
+            android:value="AIzaSyDzjNvtA1CBoz7QQTbQ5p5vYG9HwcgImH8" />
+        <meta-data
+            android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+            />
+
     </application>
 
 </manifest>

@@ -24,36 +24,22 @@ class intro : AppCompatActivity() {
     var locationCallback: LocationCallback?=null
     var locationRequest: LocationRequest?=null
 
-    var currentLoc=LatLng(0.0,0.0)
+    var currentLoc=LatLng(0.0,0.0) //현재위치
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_intro)
 
-        //init()
+        getCurrentLoc()
         Handler().postDelayed({
             finish()
         },2000)
+
+
     }
 // 지도 버튼 누르면 API로부터 받은 확진자이용매장 위치정보+매장이름+정확한주소 어레이를 MapActivity에 넘기기
-private fun init() {
+//권한체크하고 현재 위치정보 가져오기
 
-    // 지정한 위치 위도 경도 받아오기
-    val mgeocorder: Geocoder = Geocoder(this)
-    mResultLocation= mgeocorder.getFromLocationName("인천광역시 부평구 삼산동",1)
-    val mLat = mResultLocation.get(0).latitude
-    val mLng =  mResultLocation.get(0).longitude
-    Log.i("geocoding",mLat.toString()+mLng.toString())
-
-    // 더보기 버튼누르면 액티비티 전환 (확진자 이용매장이름+ 주소 + 위도경도 + 확진자방문일자 + 거리+ 혼잡도) 인텐트에 담아서 전달하기
-    /*locate.setOnClickListener {
-        val intro_intent = Intent(applicationContext, VisitedStoreListActivity::class.java)
-        startActivity(intro_intent)
-    }*/
-
-    //권한체크하고 현재 위치정보 가져오기
-    getCurrentLoc()
-}
     private fun getCurrentLoc() { //권한정보 체크하는 기능
         if (ActivityCompat.checkSelfPermission(
                 this,

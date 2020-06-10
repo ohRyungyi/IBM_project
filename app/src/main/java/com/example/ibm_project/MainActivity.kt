@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
+import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -27,36 +28,39 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_set_location.*
+import org.json.JSONObject
+import org.jsoup.Jsoup
+import java.lang.ref.WeakReference
+import java.net.URL
 
 class MainActivity : AppCompatActivity() {
 
-    /*var mResultLocation = listOf<Address>()
+    var mResultLocation = listOf<Address>()
     var fusedLocationClient: FusedLocationProviderClient?= null
-    var locationCallback:LocationCallback?=null
-    var locationRequest:LocationRequest?=null
-
-   var currentLoc=LatLng(0.0,0.0)*/
-
+    var currentLoc=LatLng(0.0,0.0)
 
     lateinit var nowlocate:String
     lateinit var nowLocation:TextView
     lateinit var adapter:locationAdapter
     lateinit var store:ArrayList<StoreData>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         load_intro()
+
         var loc:TextView=findViewById(R.id.locate)
         nowLocation=findViewById<TextView>(R.id.locate)
         nowlocate=nowLocation.text.toString()
         formatRecycler()
+
         loc.setOnClickListener {
             searchPart.visibility=View.VISIBLE
             var addressList=findViewById<RecyclerView>(R.id.addressList)
             var search=findViewById<TextView>(R.id.inputAddress)
             search.setText("")
             formatRecycler()
-
         }
         var btn=findViewById<Button>(R.id.find)
         btn.setOnClickListener {
@@ -86,6 +90,7 @@ class MainActivity : AppCompatActivity() {
         var searchStore=findViewById<TextView>(R.id.searchStore)
         searchStore.setOnClickListener {
             val searchStoreIntent=Intent(applicationContext,SearchStore::class.java)
+            //searchStoreIntent.putExtra("location",currentLoc)
             startActivity(searchStoreIntent)
         }
         var more=findViewById<TextView>(R.id.more)
@@ -95,14 +100,15 @@ class MainActivity : AppCompatActivity() {
             startActivity(visitedIntent)
 
         }
-
     }
+
     fun load_intro(){
         val intro_intent = Intent(applicationContext, intro::class.java)
         startActivity(intro_intent)
         var data:LatLng=intro_intent.extras?.get("nowlocation")  as LatLng
         Toast.makeText(applicationContext,data.toString(),Toast.LENGTH_SHORT).show()
     }
+
     fun initData():ArrayList<StoreData>{
         //어댑터에 넘겨줄 데이터 생성
         var data=ArrayList<StoreData>()
@@ -188,7 +194,7 @@ class MainActivity : AppCompatActivity() {
         }
         list.adapter=adapter
 
-        store=initData()
+        store=initData() ///
 
     }
 
@@ -217,6 +223,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
+
 // 사용자 위치 지정하면? 그 위치 API로 전달 / 위치지정 안하면? 현재 위치 전달 -> 확진자 이용매장 이름, 위치(위도경도), 상세주소, 혼잡도 받기
 // 더보기 버튼누르면 액티비티 전환
 
@@ -228,20 +236,24 @@ class MainActivity : AppCompatActivity() {
         val mLat = mResultLocation.get(0).latitude
         val mLng =  mResultLocation.get(0).longitude
         Log.i("geocoding",mLat.toString()+mLng.toString())
+        //위치 지정 액티비티에서 하기
+
 
         // 더보기 버튼누르면 액티비티 전환 (확진자 이용매장이름+ 주소 + 위도경도 + 확진자방문일자 + 거리+ 혼잡도) 인텐트에 담아서 전달하기
-        locate.setOnClickListener {
-            val intro_intent = Intent(applicationContext, VisitedStoreListActivity::class.java)
-            startActivity(intro_intent)
-        }
-    fun load_intro(){
-        val intro_intent = Intent(applicationContext, intro::class.java)
-        startActivity(intro_intent)
-    }
 
         //권한체크하고 현재 위치정보 가져오기
         getCurrentLoc()
+
+        val urlStr ="서버 url" + currentLoc
+        val task = MyAsyncTask(this)
+        task.execute(URL(urlStr))
     }
+
+
+
+
+
+
     private fun getCurrentLoc() { //권한정보 체크하는 기능
         if (ActivityCompat.checkSelfPermission(
                 this,
@@ -287,4 +299,33 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    class MyAsyncTask(context: MainActivity) : AsyncTask<URL, Unit, Unit>() {
+        val context = context
+        val activityreference = WeakReference(context)
+        val activity = activityreference.get()
+
+        override fun doInBackground(vararg params: URL?) {
+            val doc = Jsoup.connect(params[0].toString()).ignoreContentType(true).get()
+            val json = JSONObject(doc.text())
+            val array = json.getJSONArray("")
+
+            for(i in 0 until array.length()){
+                val month = array.getJSONObject(i).getString("month")
+                val day = array.getJSONObject(i).getString("day")
+                val storename = array.getJSONObject(i).getString("address")
+                val address_name = array.getJSONObject(i).getString("address_name")
+                val latlng = array.getJSONObject(i).getString("latlng")
+                val lat = latlng.split(", ")[0].toFloat()
+                val lng = latlng.split(", ")[1].toFloat()
+                val distance = array.getJSONObject(i).getString("distance").toFloat()
+
+                // 확진자 방문일자로 데이터 텀 바꾸기
+                //여기 이미지, 전화번호, 영업중 등 추가 해서 만들기
+                //val storedataterm = StoreData(storename,address_name,lat,lng,distance,null)
+                //activity?.store?.add(storedataterm)
+            }
+        }
+    }
 }
+
+
