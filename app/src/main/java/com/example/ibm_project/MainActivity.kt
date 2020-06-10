@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
     var fusedLocationClient: FusedLocationProviderClient?= null
     var currentLoc=LatLng(0.0,0.0)
 
+
     lateinit var nowlocate:String
     lateinit var nowLocation:TextView
     lateinit var adapter:locationAdapter
@@ -249,11 +250,6 @@ class MainActivity : AppCompatActivity() {
         task.execute(URL(urlStr))
     }
 
-
-
-
-
-
     private fun getCurrentLoc() { //권한정보 체크하는 기능
         if (ActivityCompat.checkSelfPermission(
                 this,
@@ -319,7 +315,7 @@ class MainActivity : AppCompatActivity() {
                 val lng = latlng.split(", ")[1].toFloat()
                 val distance = array.getJSONObject(i).getString("distance").toFloat()
 
-                // 확진자 방문일자로 데이터 텀 바꾸기
+                // 확진자 방문일자로 데이터 텀 바꾸기=
                 //여기 이미지, 전화번호, 영업중 등 추가 해서 만들기
                 //val storedataterm = StoreData(storename,address_name,lat,lng,distance,null)
                 //activity?.store?.add(storedataterm)
