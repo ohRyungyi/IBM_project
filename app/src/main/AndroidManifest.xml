@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".VisitedStoreListActivity"></activity>
-        <activity android:name=".SearchStore"></activity>
+        <activity android:name=".search"></activity>
         <activity android:name=".setLocation" />
         <activity android:name=".RecomendedStoreListActivity" />
         <activity android:name=".MapForSearchedActivity" />
