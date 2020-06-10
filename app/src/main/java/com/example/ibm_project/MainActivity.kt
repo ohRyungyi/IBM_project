@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
+import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -28,6 +29,10 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_set_location.*
+import org.json.JSONObject
+import org.jsoup.Jsoup
+import java.lang.ref.WeakReference
+import java.net.URL
 
 class MainActivity : AppCompatActivity() {
 
@@ -258,6 +263,10 @@ class MainActivity : AppCompatActivity() {
 
         //권한체크하고 현재 위치정보 가져오기
         getCurrentLoc()
+
+        val urlStr ="서버 url" + currentLoc
+        val task = MyAsyncTask(this)
+        task.execute(URL(urlStr))
     }
     private fun getCurrentLoc() { //권한정보 체크하는 기능
         if (ActivityCompat.checkSelfPermission(
@@ -302,6 +311,34 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this,"위치정보 제공을 하셔야 합니다", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    class MyAsyncTask(context: MainActivity) : AsyncTask<URL, Unit, Unit>() {
+        val activityreference = WeakReference(context)
+        val context = context
+        val activity = activityreference.get()
+
+        override fun doInBackground(vararg params: URL?) {
+            val doc = Jsoup.connect(params[0].toString()).ignoreContentType(true).get()
+            val json = JSONObject(doc.text())
+            val array = json.getJSONArray("")
+
+            for(i in 0 until array.length()){
+                val month =  array.getJSONObject(i).getString("month")
+                val address_name = array.getJSONObject(i).getString("address_name")
+                val storename =  array.getJSONObject(i).getString("address")
+                val latlng =  array.getJSONObject(i).getString("latlng")
+                val lat = latlng.split(", ")[0]
+                val lng = latlng.split(", ")[1]
+                val distance = array.getJSONObject(i).getString("distance")
+
+                // 확진자 방문일자로 데이터 텀 바꾸기
+                //여기 이미지, 전화번호, 영업중 등 추가 해서 만들기
+                // val storedataterm = StoreData(storename,address_name,lat,lng,distance,null)
+                //activity?.store?.add(storedataterm)
+            }
+        }
+
     }
 
 }

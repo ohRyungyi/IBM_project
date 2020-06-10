@@ -88,7 +88,6 @@ class SearchStore : AppCompatActivity() {
 
                 }
             }
-
         }
 
         recentTerms.adapter=termAdapter
@@ -110,7 +109,6 @@ class SearchStore : AppCompatActivity() {
                 val lng = array.getJSONObject(i).getString("lng")
                 val congestion = array.getJSONObject(i).getString("congestion")
 
-                // 확진자 방문일자로 데이터 텀 바꾸기
                 //여기 이미지, 전화번호, 영업중 등 추가 해서 만들기
                // val storedataterm = StoreData(storename,address_name,lat,lng,distance,null)
                 //activity?.store?.add(storedataterm)
