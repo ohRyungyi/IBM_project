@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_search.*
 // 리사이클러뷰에 클릭리스너 달아서 클릭하면 인텐트 만들어서 MapActivity로 전달 (인텐트에 (확진자 이용매장이름+ 주소 + 위도경도 + 확진자방문일자 +혼잡도 +거리) 담기)
 
 class VisitedStoreListActivity : AppCompatActivity() {
-    lateinit var visitedAdapter:VisitiedStoreAdapter
+    lateinit var visitedAdapter:detailVisitedStoreAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_visited_store_list)
@@ -33,12 +33,12 @@ class VisitedStoreListActivity : AppCompatActivity() {
         }
 
 
-        visitedAdapter=VisitiedStoreAdapter(data)
+        visitedAdapter=detailVisitedStoreAdapter(data)
         var storelist=findViewById<RecyclerView>(R.id.visitedStoreRecycler)
         storelist.layoutManager=LinearLayoutManager(applicationContext,LinearLayoutManager.VERTICAL,false)
-        visitedAdapter.onitemclick=object:VisitiedStoreAdapter.OnItemClickListener{
+        visitedAdapter.onclicklistener=object:detailVisitedStoreAdapter.OnItemClick{
             override fun itemclick(
-                viewHolder: VisitiedStoreAdapter.MyViewHolder,
+                viewHolder: detailVisitedStoreAdapter.MyViewHolder,
                 view: View,
                 data: StoreData,
                 position: Int

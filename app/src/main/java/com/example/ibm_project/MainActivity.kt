@@ -141,7 +141,8 @@ class MainActivity : AppCompatActivity() {
             -1,
             2,
             "",
-        1.23
+        1.23,
+            "02-1234-5678"
         ))
         data.add(StoreData(
             "담백한 고기집",
@@ -152,7 +153,8 @@ class MainActivity : AppCompatActivity() {
             -1,
             2,
             "",
-            1.45
+            1.45,
+            "02-1234-5678"
         ))
         data.add(StoreData(
             "분위기 카페",
@@ -163,7 +165,8 @@ class MainActivity : AppCompatActivity() {
             -1,
             5,
             "",
-            0.98
+            0.98,
+            "02-1234-5678"
         ))
         data.add(StoreData(
             "유명한 의류매장",
@@ -174,7 +177,8 @@ class MainActivity : AppCompatActivity() {
             1,
             7,
             "",
-            0.2
+            0.2,
+            "02-1234-5678"
         ))
         data.add(StoreData(
             "고급진 카페",
@@ -185,7 +189,8 @@ class MainActivity : AppCompatActivity() {
             1,
             9,
             "",
-            3.5
+            3.5,
+            "02-1234-5678"
         ))
         return data
     }
